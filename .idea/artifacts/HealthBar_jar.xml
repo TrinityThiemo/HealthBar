@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="HealthBar:jar">
+    <output-path>$USER_HOME$/Desktop/Test Server/plugins/</output-path>
+    <root id="archive" name="HealthBar.jar">
+      <element id="module-output" name="HealthBar" />
+    </root>
+  </artifact>
+</component>

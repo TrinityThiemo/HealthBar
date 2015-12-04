@@ -1,0 +1,5 @@
+# HealthBar Configuration
+format: "&f%damager - &c[%health&c]"
+health-format:
+  health-used: "&c|"
+  health-not-used: "&4|"
