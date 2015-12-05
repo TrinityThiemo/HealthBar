@@ -10,3 +10,5 @@ disabled-worlds:
 disabled-entities:
 - ender_dragon
 - wither
+
+announce-update: true
