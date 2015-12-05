@@ -1,3 +1,6 @@
-0.2.1
+2.1V
+------------------------------------------------------------------------
+				HealthBar            - TrinityDEV
+------------------------------------------------------------------------
 
-ReadMe file is under construction, will fix it when I have time
+Work in progress
