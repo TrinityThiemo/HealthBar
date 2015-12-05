@@ -7,7 +7,9 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 /**
- * Created by Thiemo on 4-12-2015.
+ * Created by Thiemo on 5-12-2015.
+ * No part of this publication may be reproduced, distributed, or transmitted in any form or by any means.
+ * Copyright © 2015 by Thiemo
  */
 public class ActionBar {
 

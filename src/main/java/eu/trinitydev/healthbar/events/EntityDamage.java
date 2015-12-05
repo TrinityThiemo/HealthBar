@@ -2,17 +2,15 @@ package eu.trinitydev.healthbar.events;
 
 import eu.trinitydev.healthbar.Core;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
-import java.util.ArrayList;
-
 /**
- * Created by Thiemo on 4-12-2015.
+ * Created by Thiemo on 5-12-2015.
+ * No part of this publication may be reproduced, distributed, or transmitted in any form or by any means.
+ * Copyright © 2015 by Thiemo
  */
 public class EntityDamage implements Listener {
 
@@ -22,76 +20,67 @@ public class EntityDamage implements Listener {
         this.plugin = instance;
     }
 
-    public String getEntityHealth(LivingEntity entity, double damage) {
-        ArrayList<String> entity_health = new ArrayList<String>();
-        int int_damage = (int) damage;
-        int total = 0;
-
-        for (int i = 0; i < (entity.getHealth() -
-                int_damage);) {
-            entity_health.add(ChatColor.translateAlternateColorCodes('&', plugin.health_used));
-            i++;
-        }
-
-        for(int i = 0; i < (int) entity.getMaxHealth();) {
-            if (entity_health.size() < (int) entity.getMaxHealth()) {
-                entity_health.add(ChatColor.translateAlternateColorCodes('&', plugin.health_not_used));
-            }
-
-            i++;
-        }
-        String health = entity_health.toString().replace(",", "").replace("[", "").replace("]", "").replace(" ", "");
-        return health;
-    }
-
     @EventHandler
     public void entityDamage(EntityDamageByEntityEvent event) {
-        if(event.isCancelled()) {
+        if (event.isCancelled()) {
             return;
         }
+
+        if (!(plugin.manager.worldEnabled(event.getDamager().getWorld().getName()))) {
+            return;
+        }
+
+        if (!(plugin.manager.entityEnabled(event.getEntity().getType()))) {
+            return;
+        }
+
         if (event.getDamager() instanceof LivingEntity) {
             if (event.getDamager() instanceof Player) {
                 Player player = (Player) event.getDamager();
                 if (event.getEntity() instanceof Player) {
                     Player target = (Player) event.getEntity();
-                    String bar_send_player = ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", target.getName()).replace("%health", getEntityHealth(target, event.getDamage())));
-                    String bar_send_target = ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", player.getName()).replace("%health", getEntityHealth(player, event.getDamage())));
-                    plugin.bar.sendActionBar(player, bar_send_player);
-                    plugin.bar.sendActionBar(target, bar_send_target);
+                    sendPlayers(player, target, event.getDamage());
                 } else if (event.getEntity() instanceof LivingEntity) {
                     LivingEntity entity = (LivingEntity) event.getEntity();
-                    String bar_send = ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", entity.getType().toString().substring(0, 1) + entity.getType().toString().substring(1).toLowerCase()).replace("%health", getEntityHealth(entity, event.getDamage())));
-                    plugin.bar.sendActionBar(player, bar_send);
+                    sendPlayerEntity(entity, player, event.getDamage());
                 }
             } else {
-                if(event.getEntity() instanceof  Player) {
+                if (event.getEntity() instanceof Player) {
                     Player player = (Player) event.getEntity();
                     LivingEntity entity = (LivingEntity) event.getDamager();
-                    String bar_send = ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", entity.getType().toString().substring(0, 1) + entity.getType().toString().substring(1).toLowerCase()).replace("%health", getEntityHealth(entity, event.getDamage())));
-                    plugin.bar.sendActionBar(player, bar_send);
+                    sendPlayerEntity(entity, player, event.getDamage());
                 }
             }
         } else {
-            if(event.getDamager() instanceof Arrow) {
+            if (event.getDamager() instanceof Arrow) {
                 if (event.getEntity() instanceof Player) {
                     Player target = (Player) event.getEntity();
                     Arrow arrow = (Arrow) event.getDamager();
                     if (arrow.getShooter() instanceof LivingEntity) {
                         if (arrow.getShooter() instanceof Player) {
                             Player player = (Player) arrow.getShooter();
-                            String bar_send_player = ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", target.getName()).replace("%health", getEntityHealth(target, event.getDamage())));
-                            String bar_send_target = ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", player.getName()).replace("%health", getEntityHealth(player, event.getDamage())));
-                            plugin.bar.sendActionBar(player, bar_send_player);
-                            plugin.bar.sendActionBar(target, bar_send_target);
+                            sendPlayers(player, target, event.getDamage());
                         } else {
-                            LivingEntity entity = (LivingEntity)arrow.getShooter();
-                            String bar_send = ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", entity.getType().toString().substring(0, 1) + entity.getType().toString().substring(1).toLowerCase()).replace("%health", getEntityHealth(entity, event.getDamage())));
-                            plugin.bar.sendActionBar(target, bar_send);
+                            LivingEntity entity = (LivingEntity) arrow.getShooter();
+                            sendPlayerEntity(entity, target, event.getDamage());
                         }
                     }
                 }
             }
         }
+    }
+
+    private void sendPlayerEntity(LivingEntity entity, Player player, double damage) {
+        if(entity.getCustomName() == null) {
+            plugin.bar.sendActionBar(player, ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", entity.getType().toString().substring(0, 1) + entity.getType().toString().substring(1).toLowerCase()).replace("%health", plugin.manager.getEntityHealth(entity, damage))));
+        } else {
+            plugin.bar.sendActionBar(player, ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", entity.getCustomName()).replace("%health", plugin.manager.getEntityHealth(entity, damage))));
+        }
+    }
+
+    private void sendPlayers(Player player, Player target, double damage) {
+        plugin.bar.sendActionBar(player, ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", target.getName()).replace("%health", plugin.manager.getEntityHealth(target, damage))));
+        plugin.bar.sendActionBar(target, ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", player.getName()).replace("%health", plugin.manager.getEntityHealth(player, damage))));
     }
 
 }
