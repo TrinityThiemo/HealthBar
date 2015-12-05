@@ -1,4 +1,4 @@
-How to configure this plugin:
+How to configure HealthBar plugin:
 
 Default Configuration:
 ------------------------------------------------------
