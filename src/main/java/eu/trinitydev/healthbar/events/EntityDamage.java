@@ -2,7 +2,9 @@ package eu.trinitydev.healthbar.events;
 
 import eu.trinitydev.healthbar.Core;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -71,7 +73,7 @@ public class EntityDamage implements Listener {
     }
 
     private void sendPlayerEntity(LivingEntity entity, Player player, double damage) {
-        if(entity.getCustomName() == null) {
+        if (entity.getCustomName() == null) {
             plugin.bar.sendActionBar(player, ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", entity.getType().toString().substring(0, 1) + entity.getType().toString().substring(1).toLowerCase()).replace("%health", plugin.manager.getEntityHealth(entity, damage))));
         } else {
             plugin.bar.sendActionBar(player, ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", entity.getCustomName()).replace("%health", plugin.manager.getEntityHealth(entity, damage))));
