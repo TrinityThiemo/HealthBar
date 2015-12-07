@@ -13,12 +13,6 @@ import org.bukkit.entity.Player;
  */
 public class ActionBar {
 
-    private Core plugin;
-
-    public ActionBar(Core instance) {
-        this.plugin = instance;
-    }
-
     public void sendActionBar(Player player, String message) {
         CraftPlayer p = (CraftPlayer) player;
         IChatBaseComponent cbc = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + message + "\"}");
