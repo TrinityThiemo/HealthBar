@@ -12,3 +12,8 @@ disabled-entities:
 - wither
 
 announce-update: true
+enable-permission: false
+
+display-names:
+  #zombie: "Brain Chopper"
+  #skeleton: "King of Archery"

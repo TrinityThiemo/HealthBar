@@ -3,3 +3,5 @@ main: eu.trinitydev.healthbar.Core
 version: 0.2.2
 author: TrinityDEV
 commands:
+  healthbar:
+    description: HealthBar Regular Command

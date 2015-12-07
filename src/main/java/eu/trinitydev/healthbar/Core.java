@@ -1,5 +1,6 @@
 package eu.trinitydev.healthbar;
 
+import eu.trinitydev.healthbar.commands.BarCommands;
 import eu.trinitydev.healthbar.events.EntityDamage;
 import eu.trinitydev.healthbar.events.PlayerJoin;
 import eu.trinitydev.healthbar.utils.ActionBar;
@@ -11,6 +12,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Thiemo on 5-12-2015.
@@ -28,16 +31,30 @@ public class Core extends JavaPlugin {
     public boolean updated = true;
     public String latestversion = "";
 
+    public ArrayList<String> disabled_worlds = new ArrayList<String>();
+    public ArrayList<String> disabled_entities = new ArrayList<String>();
+
+    public HashMap<String, String> display_names = new HashMap<String, String>();
+
     public void onEnable() {
         this.bar = new ActionBar(this);
         this.manager = new BasicManager(this);
 
         initEvents();
         initConfig();
+        initCommands();
 
         this.bar_format = getConfig().getString("format");
         this.health_used = getConfig().getString("health-format.health-used");
         this.health_not_used = getConfig().getString("health-format.health-not-used");
+
+        disabled_worlds.addAll(this.getConfig().getStringList("disabled-worlds"));
+        disabled_entities.addAll(this.getConfig().getStringList("disabled-entities"));
+
+        if(this.getConfig().get("display-names") != null)
+        for(String names : this.getConfig().getConfigurationSection("display-names").getKeys(false)) {
+            display_names.put(names, this.getConfig().getString("display-names." + names));
+        }
         checkVersion();
 
         if(!updated) {
@@ -50,6 +67,10 @@ public class Core extends JavaPlugin {
     private void initEvents() {
         getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
         getServer().getPluginManager().registerEvents(new EntityDamage(this), this);
+    }
+
+    private void initCommands() {
+        getCommand("healthbar").setExecutor(new BarCommands(this));
     }
 
 

@@ -4,7 +4,6 @@ import eu.trinitydev.healthbar.Core;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 
@@ -45,8 +44,7 @@ public class BasicManager {
 
     public boolean worldEnabled(String world) {
         boolean enabled = true;
-        if (plugin.getConfig().getStringList("disabled-worlds")
-                .contains(world)) {
+        if (plugin.disabled_worlds.contains(world)) {
             enabled = false;
         }
 
@@ -56,7 +54,7 @@ public class BasicManager {
 
     public boolean entityEnabled(EntityType type) {
         boolean enabled = true;
-        if (plugin.getConfig().getStringList("disabled-entities")
+        if (plugin.disabled_entities
                 .contains(type.toString().toLowerCase())) {
             enabled = false;
         }

@@ -36,6 +36,12 @@ public class EntityDamage implements Listener {
             return;
         }
 
+        if(plugin.getConfig().getBoolean("enable-permission")) {
+            if (!event.getDamager().hasPermission("healthbar.show-bar")) {
+                return;
+            }
+        }
+
         if (event.getDamager() instanceof LivingEntity) {
             if (event.getDamager() instanceof Player) {
                 Player player = (Player) event.getDamager();
@@ -74,7 +80,12 @@ public class EntityDamage implements Listener {
 
     private void sendPlayerEntity(LivingEntity entity, Player player, double damage) {
         if (entity.getCustomName() == null) {
-            plugin.bar.sendActionBar(player, ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", entity.getType().toString().substring(0, 1) + entity.getType().toString().substring(1).toLowerCase()).replace("%health", plugin.manager.getEntityHealth(entity, damage))));
+            if (plugin.getConfig().get("display-names." + entity.getType().toString().toLowerCase()) != null) {
+                System.out.println(plugin.getConfig().getString("display-names." + entity.getType().toString().toLowerCase()));
+                plugin.bar.sendActionBar(player, ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", plugin.display_names.get(entity.getType().toString().toLowerCase())).replace("%health", plugin.manager.getEntityHealth(entity, damage))));
+            } else {
+                plugin.bar.sendActionBar(player, ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", entity.getType().toString().substring(0, 1) + entity.getType().toString().substring(1).toLowerCase()).replace("%health", plugin.manager.getEntityHealth(entity, damage))));
+            }
         } else {
             plugin.bar.sendActionBar(player, ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", entity.getCustomName()).replace("%health", plugin.manager.getEntityHealth(entity, damage))));
         }
