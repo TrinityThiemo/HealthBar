@@ -6,18 +6,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45393eb5-5fbc-479d-8bf9-e5ad406a4822" name="Default" comment="Cleaned up code">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/eu/trinitydev/healthbar/Core.class" afterPath="$PROJECT_DIR$/target/classes/eu/trinitydev/healthbar/Core.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/eu/trinitydev/healthbar/utils/BasicManager.class" afterPath="$PROJECT_DIR$/target/classes/eu/trinitydev/healthbar/utils/BasicManager.class" />
+    <list default="true" id="45393eb5-5fbc-479d-8bf9-e5ad406a4822" name="Default" comment="Updated to 0.3.2">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/eu/trinitydev/healthbar/events/EntityDamage.class" afterPath="$PROJECT_DIR$/target/classes/eu/trinitydev/healthbar/events/EntityDamage.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/eu/trinitydev/healthbar/utils/ActionBar.class" afterPath="$PROJECT_DIR$/target/classes/eu/trinitydev/healthbar/utils/ActionBar.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/eu/trinitydev/healthbar/Core.java" afterPath="$PROJECT_DIR$/src/main/java/eu/trinitydev/healthbar/Core.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/eu/trinitydev/healthbar/commands/BarCommands.java" afterPath="$PROJECT_DIR$/src/main/java/eu/trinitydev/healthbar/commands/BarCommands.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/eu/trinitydev/healthbar/events/EntityDamage.java" afterPath="$PROJECT_DIR$/src/main/java/eu/trinitydev/healthbar/events/EntityDamage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/eu/trinitydev/healthbar/utils/BasicManager.java" afterPath="$PROJECT_DIR$/src/main/java/eu/trinitydev/healthbar/utils/BasicManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config.yml" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/plugin.yml" afterPath="$PROJECT_DIR$/target/classes/plugin.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/config.yml" afterPath="$PROJECT_DIR$/target/classes/config.yml" />
     </list>
     <ignored path="HealthBar.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,10 +62,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plugin.yml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="plugin.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/plugin.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.07816092">
+            <state vertical-scroll-proportion="-2.6153846">
               <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
               <folding />
             </state>
@@ -81,8 +75,8 @@
       <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+            <state vertical-scroll-proportion="-0.6296296">
+              <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -100,11 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EntityDamage.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="EntityDamage.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/eu/trinitydev/healthbar/events/EntityDamage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="38" column="65" selection-start-line="38" selection-start-column="65" selection-end-line="38" selection-end-column="65" />
+            <state vertical-scroll-proportion="0.54464287">
+              <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -176,11 +170,11 @@
         <option value="$PROJECT_DIR$/src/main/java/eu/trinitydev/healthbar/utils/ActionBar.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config.yml" />
         <option value="$PROJECT_DIR$/src/main/java/eu/trinitydev/healthbar/Core.java" />
-        <option value="$PROJECT_DIR$/src/main/java/eu/trinitydev/healthbar/events/EntityDamage.java" />
         <option value="$PROJECT_DIR$/src/main/java/eu/trinitydev/healthbar/utils/BasicManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/eu/trinitydev/healthbar/commands/BarCommands.java" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
+        <option value="$PROJECT_DIR$/src/main/java/eu/trinitydev/healthbar/events/EntityDamage.java" />
       </list>
     </option>
   </component>
@@ -632,7 +626,13 @@
       <option name="project" value="LOCAL" />
       <updated>1449512442126</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Updated to 0.3.2">
+      <created>1449588548857</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1449588548857</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -680,7 +680,8 @@
     <MESSAGE value="Updated to 0.2.2" />
     <MESSAGE value="Updated to 0.3.1" />
     <MESSAGE value="Cleaned up code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up code" />
+    <MESSAGE value="Updated to 0.3.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated to 0.3.2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1149,16 +1150,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eu/trinitydev/healthbar/events/EntityDamage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="65" selection-start-line="38" selection-start-column="65" selection-end-line="38" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/eu/trinitydev/healthbar/utils/BasicManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1181,17 +1172,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+        <state vertical-scroll-proportion="-0.6296296">
+          <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/plugin.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07816092">
+        <state vertical-scroll-proportion="-2.6153846">
           <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/trinitydev/healthbar/events/EntityDamage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.54464287">
+          <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -45,7 +45,6 @@ public class EntityDamage implements Listener {
         if (plugin.getConfig().getBoolean("gamemode-settings.enable-gamemode-settings")) {
             if (event.getDamager() instanceof Player) {
                 if (plugin.disabled_gamemodes.contains(((Player) event.getDamager()).getGameMode().toString().toLowerCase())) {
-                    System.out.println(((Player) event.getDamager()).getGameMode().toString().toLowerCase());
                     return;
                 }
             }
@@ -90,7 +89,6 @@ public class EntityDamage implements Listener {
     private void sendPlayerEntity(LivingEntity entity, Player player, double damage) {
         if (entity.getCustomName() == null) {
             if (plugin.getConfig().get("display-names." + entity.getType().toString().toLowerCase()) != null) {
-                System.out.println(plugin.getConfig().getString("display-names." + entity.getType().toString().toLowerCase()));
                 plugin.bar.sendActionBar(player, ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", plugin.display_names.get(entity.getType().toString().toLowerCase())).replace("%health", plugin.manager.getEntityHealth(entity, damage))));
             } else {
                 plugin.bar.sendActionBar(player, ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", entity.getType().toString().substring(0, 1) + entity.getType().toString().substring(1).toLowerCase()).replace("%health", plugin.manager.getEntityHealth(entity, damage))));
