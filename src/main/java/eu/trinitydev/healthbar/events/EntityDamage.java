@@ -32,13 +32,22 @@ public class EntityDamage implements Listener {
             return;
         }
 
-        if (!(plugin.manager.entityEnabled(event.getEntity().getType()))) {
+        if (!(plugin.manager.entityEnabled(event.getDamager().getType()))) {
             return;
         }
 
-        if(plugin.getConfig().getBoolean("enable-permission")) {
+        if (plugin.getConfig().getBoolean("enable-permission")) {
             if (!event.getDamager().hasPermission("healthbar.show-bar")) {
                 return;
+            }
+        }
+
+        if (plugin.getConfig().getBoolean("gamemode-settings.enable-gamemode-settings")) {
+            if (event.getDamager() instanceof Player) {
+                if (plugin.disabled_gamemodes.contains(((Player) event.getDamager()).getGameMode().toString().toLowerCase())) {
+                    System.out.println(((Player) event.getDamager()).getGameMode().toString().toLowerCase());
+                    return;
+                }
             }
         }
 

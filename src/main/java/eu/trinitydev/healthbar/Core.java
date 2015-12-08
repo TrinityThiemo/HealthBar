@@ -33,11 +33,12 @@ public class Core extends JavaPlugin {
 
     public ArrayList<String> disabled_worlds = new ArrayList<String>();
     public ArrayList<String> disabled_entities = new ArrayList<String>();
+    public ArrayList<String> disabled_gamemodes = new ArrayList<String>();
 
     public HashMap<String, String> display_names = new HashMap<String, String>();
 
     public void onEnable() {
-        this.bar = new ActionBar(this);
+        this.bar = new ActionBar();
         this.manager = new BasicManager(this);
 
         initEvents();
@@ -50,14 +51,15 @@ public class Core extends JavaPlugin {
 
         disabled_worlds.addAll(this.getConfig().getStringList("disabled-worlds"));
         disabled_entities.addAll(this.getConfig().getStringList("disabled-entities"));
+        disabled_gamemodes.addAll(this.getConfig().getStringList("gamemode-settings.disabled-gamemodes"));
 
-        if(this.getConfig().get("display-names") != null)
-        for(String names : this.getConfig().getConfigurationSection("display-names").getKeys(false)) {
-            display_names.put(names, this.getConfig().getString("display-names." + names));
-        }
+        if (this.getConfig().get("display-names") != null)
+            for (String names : this.getConfig().getConfigurationSection("display-names").getKeys(false)) {
+                display_names.put(names, this.getConfig().getString("display-names." + names));
+            }
         checkVersion();
 
-        if(!updated) {
+        if (!updated) {
             System.out.println(ChatColor.GOLD + "[HealthBar] " + ChatColor.GRAY + "A new update is out!");
             System.out.println(ChatColor.GOLD + "[HealthBar] " + ChatColor.GRAY + "You are running on " + ChatColor.GOLD + "v" + this.getDescription().getVersion() + ChatColor.GRAY + " and " + ChatColor.GOLD + "v" + this.latestversion + ChatColor.GRAY + " is out now!");
             System.out.println(ChatColor.GOLD + "[HealthBar] " + ChatColor.GRAY + "Update it at " + ChatColor.GOLD + "https://www.spigotmc.org/resources/healthbar.15230/");
@@ -78,15 +80,15 @@ public class Core extends JavaPlugin {
         saveDefaultConfig();
     }
 
-    private void checkVersion(){
+    private void checkVersion() {
         try {
             URL urlv = new URL("https://raw.githubusercontent.com/TrinityThiemo/HealthBar/master/README.md");
             BufferedReader in = new BufferedReader(new InputStreamReader(urlv.openStream()));
             this.latestversion = in.readLine();
 
-            if(this.latestversion.equalsIgnoreCase(getDescription().getVersion())){
-               this.updated = true;
-            }else{
+            if (this.latestversion.equalsIgnoreCase(getDescription().getVersion())) {
+                this.updated = true;
+            } else {
                 this.updated = false;
             }
             in.close();

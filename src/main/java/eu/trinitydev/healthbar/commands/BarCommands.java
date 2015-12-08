@@ -5,6 +5,7 @@ import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 /**
  * Created by Thiemo on 7-12-2015.
@@ -26,8 +27,12 @@ public class BarCommands implements CommandExecutor {
                     sender.sendMessage(ChatColor.GOLD + "[HealthBar] " + ChatColor.GRAY + "Configuration file has been reloaded");
 
                     plugin.reloadConfig();
+                    plugin.disabled_worlds.clear();
                     plugin.disabled_worlds.addAll(plugin.getConfig().getStringList("disabled-worlds"));
+                    plugin.disabled_entities.clear();
                     plugin.disabled_entities.addAll(plugin.getConfig().getStringList("disabled-entities"));
+                    plugin.disabled_gamemodes.clear();
+                    plugin.disabled_gamemodes.addAll(plugin.getConfig().getStringList("gamemode-settings.disabled-gamemodes"));
                     plugin.bar_format = plugin.getConfig().getString("format");
                     plugin.health_used = plugin.getConfig().getString("health-format.health-used");
                     plugin.health_not_used = plugin.getConfig().getString("health-format.health-not-used");

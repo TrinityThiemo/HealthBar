@@ -4,6 +4,12 @@ health-format:
   health-used: "&c|"
   health-not-used: "&4|"
 
+gamemode-settings:
+  enable-gamemode-settings: true
+  disabled-gamemodes:
+  - adventure
+  - creative
+
 disabled-worlds:
 - my_world_name
 
@@ -13,6 +19,7 @@ disabled-entities:
 
 announce-update: true
 enable-permission: false
+
 
 display-names:
   #zombie: "Brain Chopper"
