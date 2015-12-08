@@ -1,6 +1,6 @@
 name: HealthBar
 main: eu.trinitydev.healthbar.Core
-version: 0.3.2
+version: 0.3.2.1
 author: TrinityDEV
 commands:
   healthbar:

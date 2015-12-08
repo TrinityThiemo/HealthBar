@@ -94,7 +94,14 @@ public class EntityDamage implements Listener {
                 plugin.bar.sendActionBar(player, ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", entity.getType().toString().substring(0, 1) + entity.getType().toString().substring(1).toLowerCase()).replace("%health", plugin.manager.getEntityHealth(entity, damage))));
             }
         } else {
-            plugin.bar.sendActionBar(player, ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", entity.getCustomName()).replace("%health", plugin.manager.getEntityHealth(entity, damage))));
+            if (plugin.getConfig().getBoolean("use-customname")) {
+                plugin.bar.sendActionBar(player, ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", entity.getCustomName()).replace("%health", plugin.manager.getEntityHealth(entity, damage))));
+            } else {
+                if (plugin.getConfig().get("display-names." + entity.getType().toString().toLowerCase()) != null) {
+                    plugin.bar.sendActionBar(player, ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", plugin.display_names.get(entity.getType().toString().toLowerCase())).replace("%health", plugin.manager.getEntityHealth(entity, damage))));
+                } else {
+                    plugin.bar.sendActionBar(player, ChatColor.translateAlternateColorCodes('&', plugin.bar_format.replace("%damager", entity.getType().toString().substring(0, 1) + entity.getType().toString().substring(1).toLowerCase()).replace("%health", plugin.manager.getEntityHealth(entity, damage))));
+                }}
         }
     }
 

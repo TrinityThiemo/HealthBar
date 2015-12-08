@@ -10,6 +10,8 @@ gamemode-settings:
   - adventure
   - creative
 
+use-customname: true
+
 disabled-worlds:
 - my_world_name
 
